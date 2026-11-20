@@ -1,0 +1,66 @@
+:root {
+  --tinta: #12263a;
+  --papel: #f6f8f7;
+  --linha: #d5dedb;
+  --verde: #0f766e;
+  --amarelo: #f5b700;
+  --vermelho: #b91c1c;
+  --topo: 56px;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: "Segoe UI", system-ui, sans-serif; color: var(--tinta); background: var(--papel); line-height: 1.5; }
+a { color: var(--verde); }
+:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.topo { height: var(--topo); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: var(--tinta); color: #fff; }
+.topo a { color: #fff; text-decoration: none; }
+.marca { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; border-bottom: 3px solid var(--amarelo); }
+.link { background: none; border: 0; color: var(--amarelo); cursor: pointer; font: inherit; text-decoration: underline; }
+
+.tela { position: relative; height: calc(100% - var(--topo)); }
+.mapa { height: 100%; width: 100%; z-index: 0; }
+.painel { position: absolute; z-index: 1000; left: 12px; right: 12px; top: 12px; max-width: 400px; max-height: calc(100% - 24px); overflow: auto; background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 4px 18px rgba(18,38,58,.25); }
+.painel h1 { font-size: 1.15rem; margin: 8px 0; }
+.painel h2 { font-size: .95rem; margin: 16px 0 6px; }
+.voltar { font-size: .9rem; }
+.selo { display: inline-block; color: #fff; padding: 0 8px; border-radius: 6px; font-weight: 700; }
+
+.pesquisa input, .cartao input { width: 100%; padding: 12px; font: inherit; border: 2px solid var(--linha); border-radius: 8px; }
+.resultados { list-style: none; margin: 8px 0 0; padding: 0; }
+.resultados a { display: block; padding: 10px 6px; text-decoration: none; color: var(--tinta); border-bottom: 1px solid var(--linha); }
+.resultados a:hover { background: var(--papel); }
+.resultados small { display: block; color: #51606e; }
+.vazio { padding: 8px 0; color: #51606e; }
+
+.lotacao { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.lotacao-barra { grid-column: 1 / -1; height: 14px; background: var(--linha); border-radius: 7px; overflow: hidden; }
+.lotacao-nivel { height: 100%; transition: width .4s; }
+.lotacao-nivel.baixa { background: #15803d; }
+.lotacao-nivel.media { background: var(--amarelo); }
+.lotacao-nivel.alta { background: var(--vermelho); }
+.pontos { padding-left: 20px; margin: 0; }
+.nota, .aviso { font-size: .85rem; color: #51606e; }
+.aviso { color: var(--vermelho); }
+
+.onibus-icone { font-size: 26px; text-align: center; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+
+.centro { display: grid; place-content: center; min-height: calc(100% - var(--topo)); padding: 16px; text-align: center; }
+.cartao { display: grid; gap: 12px; width: min(92vw, 360px); text-align: left; background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 18px rgba(18,38,58,.15); }
+.cartao label { display: grid; gap: 4px; font-weight: 600; }
+.cartao button { padding: 12px; font: inherit; font-weight: 700; border: 0; border-radius: 8px; background: var(--tinta); color: #fff; cursor: pointer; }
+.cartao .secundario { background: transparent; color: var(--tinta); border: 2px solid var(--linha); }
+
+@media (min-width: 700px) { .painel { right: auto; left: 16px; top: 16px; } }
+@media (prefers-reduced-motion: reduce) { .lotacao-nivel { transition: none; } }
+
+/* ---- Adições: menu, favoritos e reporte ---- */
+.menu { display: flex; gap: 16px; align-items: center; } /* links do topo lado a lado */
+.fav { margin: 4px 0 8px; padding: 8px 12px; font: inherit; font-weight: 600; background: #fff; color: var(--tinta); border: 2px solid var(--amarelo); border-radius: 8px; cursor: pointer; }
+.fav[aria-pressed="true"] { background: var(--amarelo); } /* destaque quando já é favorita */
+.link.escuro { color: var(--verde); } /* botão-link sobre fundo claro */
+.reporte { display: grid; gap: 8px; }
+.reporte label { display: grid; gap: 4px; font-weight: 600; font-size: .9rem; }
+.reporte select, .reporte textarea { padding: 8px; font: inherit; border: 2px solid var(--linha); border-radius: 8px; }
+.reporte button { padding: 10px; font: inherit; font-weight: 700; border: 0; border-radius: 8px; background: var(--tinta); color: #fff; cursor: pointer; }
